@@ -1,20 +1,29 @@
 <template lang="pug">
-.input-group
-  label Введите нуклеотиды:
-  input(v-model="rawInput", style="text-transform: uppercase", maxlength="100") 
-  span Осталось {{ symbolsLeft }} символов
+.mx-auto.mt-8.w-auto.flex.flex-col.gap-4
+  n-space(vertical)
+    label.font-medium Введите нуклеотиды:
+    n-input.uppercase(
+      v-model:value="rawInput",
+      maxlength="100",
+      show-count,
+      placeholder="A, C, T или G",
+      autofocus,
+      clearable
+    )
 
-.complementary-group
-  label Комплиментарный фрагмент:
-  output {{ complementary }}
+  .complementary-group.flex.flex-col
+    label.font-medium Комплиментарный фрагмент(кф):
+    output {{ complementary }}
 
-.heat-group
-  label Температура плавления последовательности:
-  output {{ heat }}
+  .heat-group
+    label.font-medium Температура плавления кф:
+    br
+    output {{ heat }}
 </template>
 
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
+import { NSpace, NInput } from "naive-ui";
 
 type handleInputFunc = (a: string) => string;
 type getComplementaryFunc = (a: string) => string;
@@ -30,8 +39,6 @@ const nucleoPairs: nucleoPairsType = {
   C: "G",
   G: "C",
 };
-
-const errors = [];
 
 const input = ref("");
 const rawInput = ref("");
@@ -52,22 +59,6 @@ const handleInput: handleInputFunc = (rawString) => {
 watch(rawInput, () => {
   input.value = handleInput(rawInput.value);
 });
-
-let symbolsLeft = computed(() => {
-  return 100 - input.value.length;
-});
-
-// const checkForMaxSymbols = (e) => {
-//   // console.log(e, symbolsLeft.value);
-
-//   if (symbolsLeft.value === 0 && e) {
-//     if (errors.length) return;
-//     errors.push({ type: "maxCharacters" });
-//     console.log(errors);
-//   } else if (symbolsLeft.value > 0) {
-//     errors.filter((error) => error.type !== "maxCharacters");
-//   }
-// };
 
 const complementary = computed(() => getComplementary(input.value));
 
