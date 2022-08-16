@@ -1,5 +1,5 @@
 {
-  "name": "test_zadanie2",
+  "name": "vue-dna-calc",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,10 +8,7 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "autoprefixer": "^9.8.8",
     "core-js": "^3.6.5",
-    "postcss": "^7.0.39",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -23,13 +20,15 @@
     "@vue/cli-service": "~4.5.13",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "autoprefixer": "^9.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
     "naive-ui": "^2.32.1",
+    "postcss": "^8.4.16",
     "pug-plain-loader": "^1.1.0",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5",
-    "vue-cli-plugin-tailwind": "~3.0.0"
+    "tailwindcss": "^3.1.8",
+    "typescript": "~4.1.5"
   }
 }
